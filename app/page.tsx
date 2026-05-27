@@ -253,7 +253,7 @@ export default function Page() {
             <section id="about" className="relative px-6 py-24">
                 <div className="mx-auto max-w-7xl">
                     <div className="mb-14 space-y-3 text-center lg:text-left">
-                        <p className="text-sm uppercase tracking-[0.4em] text-slate-500">// MODULE_01 — IDENTITY</p>
+                        <p className="text-sm uppercase tracking-[0.4em] text-slate-500">{/* MODULE_01 — IDENTITY */}</p>
                         <h2 className="text-5xl font-black tracking-[-0.04em] text-slate-950">About Me</h2>
                     </div>
                     <div className="grid gap-14 lg:grid-cols-[0.95fr_1fr] lg:items-start">
@@ -348,7 +348,7 @@ export default function Page() {
             <section id="experience" className="px-6 py-24">
                 <div className="mx-auto max-w-7xl">
                     <div className="mb-14 text-center">
-                        <p className="text-sm uppercase tracking-[0.4em] text-slate-500">// MODULE_02 — WORK HISTORY</p>
+                        <p className="text-sm uppercase tracking-[0.4em] text-slate-500">{/* MODULE_02 — WORK HISTORY */}</p>
                         <h2 className="mt-4 text-5xl font-black tracking-[-0.04em] text-slate-950">Professional Experience</h2>
                     </div>
                     <div className="space-y-8">
@@ -413,7 +413,7 @@ export default function Page() {
 
             <section id="contact" className="relative px-6 py-24">
                 <div className="mx-auto max-w-7xl mb-14 text-center">
-                    <p className="text-sm uppercase tracking-[0.35em] text-slate-500">// MODULE_05 — COMMUNICATION</p>
+                    <p className="text-sm uppercase tracking-[0.35em] text-slate-500">{/* MODULE_05 — COMMUNICATION */}</p>
                     <h2 className="mt-4 text-5xl font-black tracking-[-0.04em] text-slate-950">Contact Me</h2>
                 </div>
 

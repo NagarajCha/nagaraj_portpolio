@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600">
+  <rect width="100%" height="100%" fill="#f7fbff"/>
+  <rect x="70" y="40" width="860" height="70" rx="8" fill="#0a66c2" />
+  <text x="500" y="86" font-size="24" fill="#fff" font-family="Arial" text-anchor="middle">2-Step Verification Setup</text>
+  <rect x="140" y="140" width="720" height="380" rx="10" fill="#fff" stroke="#e0e7ef"/>
+  <text x="200" y="190" font-size="18" fill="#111" font-family="Arial">3) Under "Signing in to Google" click <tspan font-weight="700">2-Step Verification → Get started</tspan>.</text>
+  <text x="200" y="230" font-size="14" fill="#444" font-family="Arial">Follow the prompts to add your phone or an authenticator app.</text>
+  <rect x="520" y="250" width="320" height="140" rx="10" fill="#fff4e6" stroke="#ffd7a8"/>
+  <text x="680" y="290" font-size="13" fill="#8a5b00" font-family="Arial" text-anchor="middle">If already enabled, you will see "On" and can proceed.</text>
+  <circle cx="860" cy="200" r="18" fill="#ffd54f"/>
+  <text x="860" y="205" font-size="12" text-anchor="middle" fill="#111">3</text>
+</svg>

@@ -1,6 +1,8 @@
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 
+export const runtime = "nodejs";
+
 const SMTP_HOST = process.env.SMTP_HOST;
 const SMTP_PORT = Number(process.env.SMTP_PORT) || 587;
 const SMTP_USER = process.env.SMTP_USER;
@@ -12,6 +14,13 @@ function validateEmail(value: unknown) {
 }
 
 export async function POST(request: Request) {
+    console.log("[contact] POST received");
+    console.log("[contact] SMTP config", {
+        host: !!SMTP_HOST,
+        port: SMTP_PORT,
+        user: !!SMTP_USER,
+        configured: !!(SMTP_HOST && SMTP_USER && SMTP_PASS),
+    });
     if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
         return NextResponse.json(
             { error: "Email service is not configured. Set SMTP_HOST, SMTP_USER, and SMTP_PASS." },
@@ -20,6 +29,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
+    console.log("[contact] request body:", { name: body.name, email: body.email, message: body.message ? body.message.slice(0, 500) : "" });
     const name = typeof body.name === "string" ? body.name.trim() : "";
     const email = typeof body.email === "string" ? body.email.trim() : "";
     const message = typeof body.message === "string" ? body.message.trim() : "";
@@ -41,6 +51,17 @@ export async function POST(request: Request) {
         },
     });
 
+    try {
+        await transporter.verify();
+        console.log("[contact] SMTP transporter verified");
+    } catch (verifyErr) {
+        console.error("[contact] SMTP verify failed:", verifyErr);
+        return NextResponse.json(
+            { error: "Mail server verification failed. Please check SMTP settings." },
+            { status: 500 }
+        );
+    }
+
     const subject = `Portfolio contact from ${name || email}`;
     const text = `Name: ${name || "(no name provided)"}\nEmail: ${email}\n\nMessage:\n${message}`;
     const html = `
@@ -53,7 +74,7 @@ export async function POST(request: Request) {
     `;
 
     try {
-        await transporter.sendMail({
+        const info = await transporter.sendMail({
             from: `"Portfolio Contact" <${SMTP_USER}>`,
             to: SEND_EMAIL_TO,
             replyTo: email,
@@ -61,6 +82,8 @@ export async function POST(request: Request) {
             text: text,
             html: html,
         });
+
+        console.log("[contact] Email sent:", { messageId: info.messageId, accepted: info.accepted, rejected: info.rejected });
 
         return NextResponse.json({ success: true });
     } catch (error) {
