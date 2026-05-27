@@ -58,7 +58,7 @@ export async function POST(request: Request) {
             to: SEND_EMAIL_TO,
             replyTo: email,
             subject: subject,
-            text:    text,
+            text: text,
             html: html,
         });
 
